@@ -1,0 +1,5 @@
+ readID:         1 -READING- READ SUCCESS
+writeID:         2 -WRITING-WRITE SUCCESS
+writeID:         5 -WRITING-WRITE SUCCESS
+ readID:         3 -READING- READ SUCCESS
+ readID:         4 -READING- READ SUCCESS

@@ -1,0 +1,6 @@
+ProduceID:         2 InsertData:         1
+ProduceID:         5 InsertData:         2
+ConsumeID:         3 RemoveData:         2
+ConsumeID:         1 RemoveData:         1
+ProduceID:         6 InsertData:         3
+ConsumeID:         4 RemoveData:         3
