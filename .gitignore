@@ -1,3 +1,6 @@
+# jskyzero
+1
+
 # Prerequisites
 *.d
 
@@ -9,6 +12,7 @@
 
 # Linker output
 *.ilk
+
 # from https://github.com/github/gitignore/blob/master/C.gitignore
 
 *.map
