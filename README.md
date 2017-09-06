@@ -1,16 +1,14 @@
 # C-Study
-> 学习C语言编程的实践代码合集。
+> C是一种通用的编程语言，广泛用于系统软件与应用软件的开发。
 
-## 文件结构
-```shell
-.
-├── POSIX           // POSIX Library
-├── docs            // Some documents about C
-├── hardwork        // Many Study Code
-├── helloworld      // Print helloworld 
-├── snack           // A snack App written in C
-└── try             // Some Try Code
-```
+![C_(programming_language)](./docs/The_C_Programming_Language_logo.svg.png)
+
+## Branchs
+
++ master : basic C study
++ snake  : a command line snake game
++ POSIX  : The Portable Operating System Interface Library Study
++ MPI    : Message Passing Interface (MPI) Study In C
 
 ## Reference
 
