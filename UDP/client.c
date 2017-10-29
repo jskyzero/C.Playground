@@ -35,26 +35,28 @@ int main(void) {
     exit(1);
   }
 
-  while (1) {
-    printf("Enter message : ");
-    gets(message);
+  int n = 10000;
 
+  while (n--) {
+    // printf("Enter message : ");
+    // gets(message);
+    sprintf(message, "%d", n);
     // send the message
     if (sendto(s, message, strlen(message), 0, (struct sockaddr *)&si_other,
                slen) == -1) {
       die("sendto()");
     }
 
-    // receive a reply and print it
-    // clear the buffer by filling null, it might have previously received data
-    memset(buf, '\0', BUFLEN);
-    // try to receive some data, this is a blocking call
-    if (recvfrom(s, buf, BUFLEN, 0, (struct sockaddr *)&si_other, &slen) ==
-        -1) {
-      die("recvfrom()");
-    }
+    // // receive a reply and print it
+    // // clear the buffer by filling null, it might have previously received data
+    // memset(buf, '\0', BUFLEN);
+    // // try to receive some data, this is a blocking call
+    // if (recvfrom(s, buf, BUFLEN, 0, (struct sockaddr *)&si_other, &slen) ==
+    //     -1) {
+    //   die("recvfrom()");
+    // }
 
-    puts(buf);
+    // puts(buf);
   }
 
   close(s);

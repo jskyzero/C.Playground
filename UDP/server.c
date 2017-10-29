@@ -39,6 +39,7 @@ int main(void) {
   }
 
   // keep listening for data
+  int times = 0;
   while (1) {
     printf("Waiting for data...");
     fflush(stdout);
@@ -50,7 +51,7 @@ int main(void) {
     }
 
     // print details of the client/peer and the data received
-    printf("Received packet from %s:%d\n", inet_ntoa(si_other.sin_addr),
+    printf("Received packet %d from %s:%d\n", ++times, inet_ntoa(si_other.sin_addr),
            ntohs(si_other.sin_port));
     printf("Data: %s\n", buf);
 
