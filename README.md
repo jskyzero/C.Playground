@@ -7,9 +7,11 @@
 
 + master : basic C study
 + snake  : a command line snake game
++ sniff  : A mini package sniff program
 + socket : TCP/UDP socket simple usage examples
 + POSIX  : The Portable Operating System Interface Library Study
 + MPI    : Message Passing Interface (MPI) Study In C
+
 ## Reference
 
 [C reference](http://en.cppreference.com/w/c)
