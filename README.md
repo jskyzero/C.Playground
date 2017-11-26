@@ -15,7 +15,16 @@ minisniff is a mini sniff that capture package and show some info about the pack
 ## Question & Answer
 
 1. What library does minisniff use to capture packets? Where in the web can you find more information about this library?
+
+	libpcap: a portable C/C++ library for network traffic capture.
+
+	official web site: http://www.tcpdump.org/
+
 2. Do some research and describe the advantages/disadvantage of using this library? Do not blindly copy and paste material from the web. Try to understand the material you find and write what you understood.
+
+	advantages: 隔离底层细节，提供上层接口方便使用/利用操作系统提供的过滤机制，减少资源开销
+	disadvantage： 是 C/C++ 的库，受限于编程语言的局限性。
+
 3. Are there any alternative libraries available to capture packets? (Open source only)
 4. Explain the purpose of the following functions:
 a. pcap_lookupdev
@@ -44,3 +53,4 @@ feel free to modify the code and enhance the sniffer as you please. drop me a li
 ```
 
 ## Reference
++ [Programming with pcap](https://www.tcpdump.org/pcap.html)
