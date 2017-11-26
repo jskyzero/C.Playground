@@ -1,8 +1,24 @@
 # Sniff
+`jskyzero` `2017/11/26`
 
 ## Overview
 
-## Initial Readme
+minisniff is a mini sniff that capture package and show some info about the package.
+
+## Install & Run
+1. Fitst Install Dependence `sudo apt-get install libpcap0.8-dev`
+
+2. Try to Make it `make`
+
+3. Run as `sudo ./minisniff 2` to capture 2 package
+
+## Question & Answer
+
+
+
+
+## Original Readme
+
 ```
 		readme file for minisniff
 		-------------------------
@@ -15,3 +31,4 @@ if you just want to run the sniffer and see what it does use the compiled 'minis
 feel free to modify the code and enhance the sniffer as you please. drop me a line if you need any help, but i don't guarantee that i'd be able to help you.
 ```
 
+## Reference
