@@ -14,8 +14,20 @@ minisniff is a mini sniff that capture package and show some info about the pack
 
 ## Question & Answer
 
-
-
+1. What library does minisniff use to capture packets? Where in the web can you find more information about this library?
+2. Do some research and describe the advantages/disadvantage of using this library? Do not blindly copy and paste material from the web. Try to understand the material you find and write what you understood.
+3. Are there any alternative libraries available to capture packets? (Open source only)
+4. Explain the purpose of the following functions:
+a. pcap_lookupdev
+b. pcap_open_live
+c. pcap_lookupnet
+d. pcap_compile
+e. pcap_setfilter
+f. pcap_next
+g. pcap_loop
+h. pcap_dispatch
+5. There are five layers in the TCP/IP stack (application, transport, network, link, and physical). Up to what layer can minisniff decode data from the captured
+packets? Justify your answer using the code.
 
 ## Original Readme
 
