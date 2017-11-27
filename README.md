@@ -26,17 +26,24 @@ minisniff is a mini sniff that capture package and show some info about the pack
 	disadvantage： 是 C/C++ 的库，受限于编程语言的局限性。
 
 3. Are there any alternative libraries available to capture packets? (Open source only)
+
+	+ [pcap4j A Java library for capturing, crafting, and sending packets](https://github.com/kaitoy/pcap4j)
+	+ [libtins packet crafting and sniffing library](https://github.com/mfontanini/libtins)
+
 4. Explain the purpose of the following functions:
-a. pcap_lookupdev
-b. pcap_open_live
-c. pcap_lookupnet
-d. pcap_compile
-e. pcap_setfilter
-f. pcap_next
-g. pcap_loop
-h. pcap_dispatch
+	+ pcap_lookupdev: locating the network card(find the default device on which to capture)
+	+ pcap_open_live: open the network card to sniff(open a device for capturing)
+	+ pcap_lookupnet: find the IPv4 network number and netmask for a device
+	+ pcap_compile: compile a filter expression
+	+ pcap_setfilter: pcap_setfilter - set the filter
+	+ pcap_next: read the next packet from a pcap_t
+	+ pcap_loop: read the network card and returns numbers of packets captured
+	+ pcap_dispatch: process packets from a live capture or savefile
+
 5. There are five layers in the TCP/IP stack (application, transport, network, link, and physical). Up to what layer can minisniff decode data from the captured
 packets? Justify your answer using the code.
+
+	从运行时候的mac address可以推测是在数据链路层，在manpage中也有说明：`... probably includes a link-layer header...`
 
 ## Original Readme
 
