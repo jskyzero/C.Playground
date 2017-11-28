@@ -52,7 +52,16 @@ packets? Justify your answer using the code.
 
 + linux server : `sudo /etc/init.d/xinetd start`, then windows client `telnet 192.168.199.100`, you can open wireshark to capture package.
 
-+ 
++ use wireshark to analysis which bytes is passworld and should disply
+
+![](docs/1.png)
+
+图上是判断flag字段，处理的方法十分简单粗暴，判断mac地址保留client的包，然后判断flag字段保留Telnet包，然后打印对于字段。
+
++ then compile and run and output ans.
+
+![](docs/2.png)
+由于捕捉到包以后是逆序输出所以实际上是12 / 123，不可见字符是因为打印太暴力了。
 
 ## Original Readme
 

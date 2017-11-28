@@ -18,19 +18,19 @@ int main(int argc, char **argv) {
   pcap_t *descr;                 /* file descriptor for the network card */
 
   /* variables for packets we sniff */
-  ethernet_header
-      *eptr; /* pointer to the structure that represents ethernet header */
-  ip_header *ipptr; /* pointer to the structure that represents ip header */
-  unsigned int size_of_iphdr = sizeof(ip_header); /* size of the ip header */
-  unsigned int size_of_ehdr =
-      sizeof(ethernet_header); /* size of the ethernet header */
+  // ethernet_header
+      // *eptr; /* pointer to the structure that represents ethernet header */
+  // ip_header *ipptr; /* pointer to the structure that represents ip header */
+  // unsigned int size_of_iphdr = sizeof(ip_header); /* size of the ip header */
+  // unsigned int size_of_ehdr =
+      // sizeof(ethernet_header); /* size of the ethernet header */
 
   /* variables for the simple buffer, ignore them */
   buffer buf;           /* that's my linked-list */
   item *tmp;            /* an item in the linked-list */
-  u_char *ptr, *packet; /* vars to store raw packets */
-  register int i = 0;
-  struct in_addr ipaddr; /* you should know this one */
+  // u_char *ptr, *packet; /* vars to store raw packets */
+  // register int i = 0;
+  // struct in_addr ipaddr; /* you should know this one */
 
   /* simple sanity check to make sure that the application is used properly */
   if (argc != 2) {
