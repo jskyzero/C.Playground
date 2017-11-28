@@ -45,6 +45,15 @@ packets? Justify your answer using the code.
 
 	从运行时候的mac address可以推测是在数据链路层，在manpage中也有说明：`... probably includes a link-layer header...`
 
+
+## telnet
+
++ I have windows 10 and linux OS, It seems that windows 10 don't have the unsafe telnet server, I use Linux as the server, you can find how to install it on internet.
+
++ linux server : `sudo /etc/init.d/xinetd start`, then windows client `telnet 192.168.199.100`, you can open wireshark to capture package.
+
++ 
+
 ## Original Readme
 
 ```

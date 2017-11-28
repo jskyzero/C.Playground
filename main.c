@@ -131,8 +131,25 @@ int main(int argc, char **argv) {
    */
   tmp = buf.header;
   while (tmp != NULL) {
-    fprintf(stdout, "actual length=%d captured length=%d\n",
-            tmp->packet_header->len, tmp->packet_header->caplen);
+    if (tmp->full_packet[6] != (u_char)(0x4c) ||
+        tmp->full_packet[7] != (u_char)(0x0b)) {
+      tmp = tmp->next;
+      continue;
+    }
+
+    // fprintf(stdout, "actual length=%d captured length=%d\n",
+    //         tmp->packet_header->len, tmp->packet_header->caplen);
+
+    if (tmp->full_packet[0x2e] == (u_char)0x50 && 
+        tmp->full_packet[0x2f] == (u_char)0x18) {
+          // fprintf(stdout, "%02x ", tmp->full_packet[0x36]);
+          fprintf(stdout, "%c ", tmp->full_packet[0x36]);
+    }
+    // for (int i = 0; i < tmp->packet_header->caplen; i++)
+    //   fprintf(stdout, "%02x%c", (unsigned int)(tmp->full_packet[i]),
+    //           (i + 1) % 16 == 0 ? '\n' : ' ');
+
+    // fprintf(stdout, "\n\n");
 
     /* here we want to access the ethernet header of a packet, which looks like
      * this
@@ -145,89 +162,92 @@ int main(int argc, char **argv) {
      * ignore everything beyond ethernet header
      */
 
-    packet = tmp->full_packet;
-    eptr = (ethernet_header *)packet; /* ethernet header of current packet */
+    // packet = tmp->full_packet;
+    // eptr = (ethernet_header *)packet; /* ethernet header of current packet */
 
-    /* print the source and destination from the ethernet frame */
-    ptr = eptr->ether_dhost;
-    i = ETHER_ADDR_LEN;
-    fprintf(stdout, "destination mac address= ");
-    do {
-      fprintf(stdout, "%s%x", (i == ETHER_ADDR_LEN) ? " " : ":", *ptr++);
-    } while (--i > 0);
-    fprintf(stdout, "\n");
+    // /* print the source and destination from the ethernet frame */
+    // ptr = eptr->ether_dhost;
+    // i = ETHER_ADDR_LEN;
+    // fprintf(stdout, "\ndestination mac address= ");
+    // do {
+    //   fprintf(stdout, "%s%x", (i == ETHER_ADDR_LEN) ? " " : ":", *ptr++);
+    // } while (--i > 0);
+    // fprintf(stdout, "\n");
 
-    ptr = eptr->ether_shost;
-    i = ETHER_ADDR_LEN;
-    fprintf(stdout, "source mac address= ");
-    do {
-      fprintf(stdout, "%s%x", (i == ETHER_ADDR_LEN) ? " " : ":", *ptr++);
-    } while (--i > 0);
-    fprintf(stdout, "\n");
+    // ptr = eptr->ether_shost;
+    // i = ETHER_ADDR_LEN;
+    // fprintf(stdout, "source mac address=");
+    // do {
+    //   fprintf(stdout, "%s%x", (i == ETHER_ADDR_LEN) ? " " : ":", *ptr++);
+    // } while (--i > 0);
+    // fprintf(stdout, "\n\n\n");
 
-    fprintf(stdout, "type of packet= ");
+    // fprintf(stdout, "type of packet= ");
 
-    /* what is the type of packet, that is, is it an IP packet inside or is it
-     * arp etc. */
+    // /* what is the type of packet, that is, is it an IP packet inside or is
+    // it
+    //  * arp etc. */
 
-    switch (ntohs(eptr->ether_type)) {
-      case (ETHERTYPE_IP):
-        fprintf(stdout, "IP\n");
+    // switch (ntohs(eptr->ether_type)) {
+    //   case (ETHERTYPE_IP):
+    //     fprintf(stdout, "IP\n");
 
-        /* now that we know this is an ip packet, lets examine its headers
-         * ip header starts right after ethernet header, that's why we add
-         * the size of ethernet header before type casting the content
-         */
-        ipptr = (ip_header *)(packet + size_of_ehdr);
+    //     /* now that we know this is an ip packet, lets examine its headers
+    //      * ip header starts right after ethernet header, that's why we add
+    //      * the size of ethernet header before type casting the content
+    //      */
+    //     ipptr = (ip_header *)(packet + size_of_ehdr);
 
-        /* lets first check if we have a ip packet of valid length, if we don't
-         * do this check the following instructions may lead to a buffer
-         * overflow in our sniffer, cs392 gang take notes
-         */
+    //     /* lets first check if we have a ip packet of valid length, if we
+    //     don't
+    //      * do this check the following instructions may lead to a buffer
+    //      * overflow in our sniffer, cs392 gang take notes
+    //      */
 
-        if ((tmp->packet_header->len - size_of_ehdr) < size_of_iphdr) {
-          fprintf(stderr, "not a valid IP packet\n");
-          continue;
-        }
+    //     if ((tmp->packet_header->len - size_of_ehdr) < size_of_iphdr) {
+    //       fprintf(stderr, "not a valid IP packet\n");
+    //       continue;
+    //     }
 
-        /* we have a valid ip packet, so lets print out its fields */
-        fprintf(stdout, "information about this IP packet:\n");
-        fprintf(stdout, "length= %d\n", ntohs(ipptr->tot_len));
-        fprintf(stdout, "header length= %d\n", ipptr->ihl);
-        fprintf(stdout, "version= %d\n", ipptr->version);
-        fprintf(stdout, "id= %d\n", ipptr->id);
-        fprintf(stdout, "offset= %d\n", ipptr->frag_off);
-        fprintf(stdout, "ttl= %d\n", ipptr->ttl);
-        fprintf(stdout, "protocol=%d\n", ipptr->protocol);
+    //     /* we have a valid ip packet, so lets print out its fields */
+    //     fprintf(stdout, "information about this IP packet:\n");
+    //     fprintf(stdout, "length= %d\n", ntohs(ipptr->tot_len));
+    //     fprintf(stdout, "header length= %d\n", ipptr->ihl);
+    //     fprintf(stdout, "version= %d\n", ipptr->version);
+    //     fprintf(stdout, "id= %d\n", ipptr->id);
+    //     fprintf(stdout, "offset= %d\n", ipptr->frag_off);
+    //     fprintf(stdout, "ttl= %d\n", ipptr->ttl);
+    //     fprintf(stdout, "protocol=%d\n", ipptr->protocol);
 
-        ipaddr.s_addr = (unsigned long int)ipptr->saddr;
-        fprintf(stdout, "source= %s\n", inet_ntoa(ipaddr)); /* source address */
+    //     ipaddr.s_addr = (unsigned long int)ipptr->saddr;
+    //     fprintf(stdout, "source= %s\n", inet_ntoa(ipaddr)); /* source address
+    //     */
 
-        ipaddr.s_addr = (unsigned long int)ipptr->daddr;
-        fprintf(stdout, "destination= %s\n", inet_ntoa(ipaddr));
-        /* and so on, you got the idea */
-        break;
+    //     ipaddr.s_addr = (unsigned long int)ipptr->daddr;
+    //     fprintf(stdout, "destination= %s\n", inet_ntoa(ipaddr));
+    //     /* and so on, you got the idea */
+    //     break;
 
-      case (ETHERTYPE_ARP):
-        fprintf(stdout, "ARP\n");
-        break;
+    //   case (ETHERTYPE_ARP):
+    //     fprintf(stdout, "ARP\n");
+    //     break;
 
-      case (ETHERTYPE_REVARP):
-        fprintf(stdout, "RARP\n");
-        break;
+    //   case (ETHERTYPE_REVARP):
+    //     fprintf(stdout, "RARP\n");
+    //     break;
 
-      case (ETHERTYPE_PUP):
-        fprintf(stdout, "Xerox PUP\n");
-        break;
+    //   case (ETHERTYPE_PUP):c
+    //     fprintf(stdout, "Xerox PUP\n");
+    //     break;
 
-      default:
-        fprintf(stdout, "Unknown type (%x)\n", ntohs(eptr->ether_type));
-        break;
-    }
+    //   default:
+    //     fprintf(stdout, "Unknown type (%x)\n", ntohs(eptr->ether_type));
+    //     break;
+    // }
 
-    fprintf(stdout,
-            "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-            "++++++++++\n\n");
+    // fprintf(stdout,
+    //         "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    //         "++++++++++\n\n");
 
     /* next packet please */
     tmp = tmp->next;
