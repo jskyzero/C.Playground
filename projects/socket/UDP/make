@@ -1,0 +1,2 @@
+gcc client.c -o c.o
+gcc server.c -o s.o

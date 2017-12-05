@@ -1,0 +1,9 @@
+# compile output 
+*.exe
+*.out
+*.o
+
+
+# I usually use '1' as the compile output
+1
+
