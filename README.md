@@ -3,9 +3,8 @@
 
 ![C_(programming_language)](./docs/The_C_Programming_Language_logo.svg.png)
 
-## Branchs
+## Projects
 
-+ master : basic C study
 + snake  : a command line snake game
 + sniff  : A mini package sniff program
 + socket : TCP/UDP socket simple usage examples
