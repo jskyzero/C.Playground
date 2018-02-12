@@ -9,14 +9,13 @@ typedef void(*void_func)(void);
 
 void check_time(void_func func){
   clock_t begin_time = clock();
-  clock_t end_time = clock();
   func();
-  printf("%f", (float)(end_time - begin_time)/CLOCKS_PER_SEC); 
+  clock_t end_time = clock();
+  printf("use time %f", (float)(end_time - begin_time)/CLOCKS_PER_SEC); 
 }
 
 void select_problem() {
   int k = 1<<30;
-  printf("%d-", k);
   while(k--) {
     k = k;
   }
