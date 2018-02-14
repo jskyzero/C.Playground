@@ -15,13 +15,13 @@ void int_swap(int *const left, int *const right) {
 
 void int_qsort(int *begin, int *end,
                int (*cmp_func)(void const *, void const *)) {
-  int private = *begin;
+  int select_value = *begin;
   int i = 0;
   int j = (end - begin) - 1;
 
   while (i <= j) {
-    while ((*cmp_func)(begin + i, &private) < 0) i++;
-    while ((*cmp_func)(begin + j, &private) > 0) j--;
+    while ((*cmp_func)(begin + i, &select_value) < 0) i++;
+    while ((*cmp_func)(begin + j, &select_value) > 0) j--;
     if (i <= j) {
       int_swap(begin + i, begin + j);
       i++;
