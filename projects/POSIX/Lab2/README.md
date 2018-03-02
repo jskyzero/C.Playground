@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 ## 用线程生成Fibonacci数列
 > 用pthread线程库，按照第四章习题4.11的要求生成并输出Fibonacci数列
 
-具体代码请参考2.1.fibonacci.c，思路大概就是面向过程，逐步求精，把计算那一提出到线程中完成，另外使python测试了4byte signed int 能保存的最大，同时也可以运行2.1.cal_size.py来参考结果是否一致。
+具体代码请参考2.1.fibonacci.c，思路大概就是面向过程，逐步求精，把计算那一提出到线程中完成，另外使python测试了 4byte signed int 能保存的最大，同时也可以运行2.1.cal_size.py来参考结果是否一致。
 
 ## 多线程矩阵乘法
 > 给定两个矩阵A和B，其中A是具有M行、K列的矩阵， B为K行、N列的矩阵， A和B的矩阵积为矩阵C， C为M行、N列。矩阵C中第i行、第j列的元素Cij就是矩阵A第i行每个元素和矩阵B第j列每个元素乘积的和。
